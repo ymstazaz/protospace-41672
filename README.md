@@ -23,6 +23,7 @@
 <!-- Association 関係性 -->
 - belongs_to :users
 - has_many :comments
+- has_one_attached :image
 
 
 ## comments テーブル
