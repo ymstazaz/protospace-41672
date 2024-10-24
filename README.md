@@ -24,6 +24,7 @@
 - belongs_to :users
 - has_many :comments
 
+
 ## comments テーブル
 | Column             | Type       | Options                       |
 | ------------------ | ---------- | ----------------------------- |
