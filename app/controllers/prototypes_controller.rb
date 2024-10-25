@@ -1,7 +1,7 @@
 class PrototypesController < ApplicationController
   def index
+    @prototypes = Prototype.all
   end
-  # →消すならルーティングも修正が必要！
 
   def new
     @prototype=Prototype.new
