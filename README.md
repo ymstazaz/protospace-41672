@@ -21,7 +21,7 @@
 | concept            | text       | null: false                   |
 | user               | references | null: false, foreign_key: true|
 <!-- Association 関係性 -->
-- belongs_to :users
+- belongs_to :user
 - has_many :comments
 - has_one_attached :image
 
@@ -34,5 +34,5 @@
 | user               | references | null: false, foreign_key: true|
 <!-- Association 関係性 -->
 <!-- Association 関係性 -->
-- belongs_to :users
-- belongs_to :prototypes
+- belongs_to :user
+- belongs_to :prototype
