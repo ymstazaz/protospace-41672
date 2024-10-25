@@ -8,10 +8,16 @@ class PrototypesController < ApplicationController
   end
 
   def create
+    @prototype = Prototype.new(prototype_params)
+    if @prototype.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
-  def Prototype_params
-    params.permit(:image, :title, :catch_copy, :concept).marge(user_id: current_user.id)
+  def prototype_params
+    params.require(:prototype).permit(:image, :title, :catch_copy, :concept).merge(user_id: current_user.id)
   end
 end
