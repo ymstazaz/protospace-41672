@@ -1,11 +1,12 @@
 class PrototypesController < ApplicationController
+  before_action :move_to_sign, except: [:index, :show]
   def index
     @prototypes = Prototype.all
   end
 
-  # def new
-  #   @prototype=Prototype.new
-  # end
+  def new
+    @prototype = Prototype.new
+  end
 
   def create
     @prototype = Prototype.new(prototype_params)
@@ -44,5 +45,11 @@ class PrototypesController < ApplicationController
   private
   def prototype_params
     params.require(:prototype).permit(:image, :title, :catch_copy, :concept).merge(user_id: current_user.id)
+  end
+
+  def move_to_sign
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
   end
 end
