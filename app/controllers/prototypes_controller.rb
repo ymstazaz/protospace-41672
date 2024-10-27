@@ -1,5 +1,6 @@
 class PrototypesController < ApplicationController
-  before_action :move_to_sign, except: [:index, :show]
+  before_action :move_to_sign, only: [:destroy, :new, :create, :update]
+
   def index
     @prototypes = Prototype.all
   end
@@ -25,6 +26,9 @@ class PrototypesController < ApplicationController
 
   def edit
     @prototype = Prototype.find(params[:id])
+    unless user_signed_in?
+      redirect_to root_path
+    end
   end
 
   def update
@@ -43,6 +47,7 @@ class PrototypesController < ApplicationController
   end
 
   private
+
   def prototype_params
     params.require(:prototype).permit(:image, :title, :catch_copy, :concept).merge(user_id: current_user.id)
   end
