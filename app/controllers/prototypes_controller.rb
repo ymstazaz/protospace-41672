@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :move_to_sign, only: [:destroy, :new, :create, :update]
+  before_action :move_to_sign, only: [:destroy, :new, :edit, :create ]
 
   def index
     @prototypes = Prototype.all
@@ -26,7 +26,7 @@ class PrototypesController < ApplicationController
 
   def edit
     @prototype = Prototype.find(params[:id])
-    unless user_signed_in? && current_user.id == @prototype.user_id
+    unless current_user.id == @prototype.user_id
       redirect_to root_path
     end
   end
